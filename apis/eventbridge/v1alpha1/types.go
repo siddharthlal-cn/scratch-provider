@@ -67,24 +67,28 @@ type EventBridgeRuleParameters struct {
 	KMSMasterKeyID *string `json:"kmsMasterKeyId,omitempty"`
 
 	// A description of the rule.
-	Description *string `type:"string"`
+	Description *string `json:"description"`
 
 	// The name or ARN of the event bus to associate with this rule. If you omit
 	// this, the default event bus is used.
-	EventBusName *string `min:"1" type:"string"`
+	// +optional
+	EventBusName *string `json:"eventBusName,omitempty"`
 
 	// The event pattern. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
 	// in the Amazon EventBridge User Guide.
-	EventPattern *string `type:"string"`
+	// +optional
+	EventPattern *string `json:"eventPattern,omitempty"`
 
 	// The Amazon Resource Name (ARN) of the IAM role associated with the rule.
-	RoleArn *string `min:"1" type:"string"`
+	// +optional
+	RoleArn *string `json:"roleArn,omitempty"`
 
 	// The scheduling expression. For example, "cron(0 20 * * ? *)" or "rate(5 minutes)".
-	ScheduleExpression *string `type:"string"`
+	ScheduleExpression *string `json:"scheduleExpression"`
 
 	// Indicates whether the rule is enabled or disabled.
-	State *string `type:"string" enum:"RuleState"`
+	// +optional
+	State *string `json:"state"`
 
 	// Tags represetnt a list of user-provided metadata that can be associated with a
 	// SNS Topic. For more information about tagging,

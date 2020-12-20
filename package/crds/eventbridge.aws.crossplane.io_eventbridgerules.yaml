@@ -4,14 +4,14 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.3.0
   creationTimestamp: null
-  name: mytypes.sample.template.crossplane.io
+  name: eventbridgerules.eventbridge.aws.crossplane.io
 spec:
-  group: sample.template.crossplane.io
+  group: eventbridge.aws.crossplane.io
   names:
-    kind: MyType
-    listKind: MyTypeList
-    plural: mytypes
-    singular: mytype
+    kind: EventBridgeRule
+    listKind: EventBridgeRuleList
+    plural: eventbridgerules
+    singular: eventbridgerule
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -30,7 +30,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: A MyType is an example API type
+        description: A EventBridgeRule is an example API type
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
@@ -41,7 +41,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: A MyTypeSpec defines the desired state of a MyType.
+            description: A EventBridgeRuleSpec defines the desired state of a EventBridgeRule.
             properties:
               deletionPolicy:
                 description: DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource. The "Delete" policy is the default when no policy is specified.
@@ -50,12 +50,58 @@ spec:
                 - Delete
                 type: string
               forProvider:
-                description: MyTypeParameters are the configurable fields of a MyType.
+                description: EventBridgeRuleParameters are the configurable fields of a EventBridgeRule.
                 properties:
-                  configurableField:
+                  description:
+                    description: A description of the rule.
                     type: string
+                  displayName:
+                    description: The display name to use for a topic with SNS subscriptions.
+                    type: string
+                  eventBusName:
+                    description: The name or ARN of the event bus to associate with this rule. If you omit this, the default event bus is used.
+                    type: string
+                  eventPattern:
+                    description: The event pattern. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the Amazon EventBridge User Guide.
+                    type: string
+                  kmsMasterKeyId:
+                    description: "Setting this enables server side encryption at-rest to your topic. The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK \n For more examples, see KeyId (https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters) in the AWS Key Management Service API Reference."
+                    type: string
+                  name:
+                    description: Name refers to the name of the AWS SNS Topic
+                    type: string
+                  region:
+                    description: Region is the region you'd like your SNSTopic to be created in.
+                    type: string
+                  roleArn:
+                    description: The Amazon Resource Name (ARN) of the IAM role associated with the rule.
+                    type: string
+                  scheduleExpression:
+                    description: The scheduling expression. For example, "cron(0 20 * * ? *)" or "rate(5 minutes)".
+                    type: string
+                  state:
+                    description: Indicates whether the rule is enabled or disabled.
+                    type: string
+                  tags:
+                    description: Tags represetnt a list of user-provided metadata that can be associated with a SNS Topic. For more information about tagging, see Tagging SNS Topics (https://docs.aws.amazon.com/sns/latest/dg/sns-tags.html) in the SNS User Guide.
+                    items:
+                      description: Tag represent a user-provided metadata that can be associated with a SNS Topic. For more information about tagging, see Tagging SNS Topics (https://docs.aws.amazon.com/sns/latest/dg/sns-tags.html) in the SNS User Guide.
+                      properties:
+                        key:
+                          description: The key name that can be used to look up or retrieve the associated value. For example, Department or Cost Center are common choices.
+                          type: string
+                        value:
+                          description: "The value associated with this tag. For example, tags with a key name of Department could have values such as Human Resources, Accounting, and Support. Tags with a key name of Cost Center might have values that consist of the number associated with the different cost centers in your company. Typically, many resources have tags with the same key name but with different values. \n AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code."
+                          type: string
+                      required:
+                      - key
+                      type: object
+                    type: array
                 required:
-                - configurableField
+                - description
+                - name
+                - region
+                - scheduleExpression
                 type: object
               providerConfigRef:
                 description: ProviderConfigReference specifies how the provider that will be used to create, observe, update, and delete this managed resource should be configured.
@@ -92,13 +138,16 @@ spec:
             - forProvider
             type: object
           status:
-            description: A MyTypeStatus represents the observed state of a MyType.
+            description: A EventBridgeRuleStatus represents the observed state of a EventBridgeRule.
             properties:
               atProvider:
-                description: MyTypeObservation are the observable fields of a MyType.
+                description: EventBridgeRuleObservation are the observable fields of a EventBridgeRule.
                 properties:
-                  observableField:
+                  arn:
+                    description: ARN is the Amazon Resource Name (ARN) specifying the SNS Topic.
                     type: string
+                required:
+                - arn
                 type: object
               conditions:
                 description: Conditions of the resource.
