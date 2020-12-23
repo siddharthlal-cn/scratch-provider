@@ -21,7 +21,6 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 
 	eventbridge "github.com/siddharthlal-cn/scratch-provider/apis/eventbridge/v1alpha1"
-	samplev1alpha1 "github.com/siddharthlal-cn/scratch-provider/apis/sample/v1alpha1"
 	templatev1alpha1 "github.com/siddharthlal-cn/scratch-provider/apis/v1alpha1"
 )
 
@@ -29,8 +28,8 @@ func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		templatev1alpha1.SchemeBuilder.AddToScheme,
-		samplev1alpha1.SchemeBuilder.AddToScheme,
 		eventbridge.SchemeBuilder.AddToScheme,
+		// samplev1alpha1.SchemeBuilder.AddToScheme,
 	)
 }
 

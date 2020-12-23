@@ -1,0 +1,14 @@
+apiVersion: eventbridge.scratch-provider.crossplane.io/v1alpha1
+kind: EventBridgeRule
+metadata:
+  name: sid-crossplane
+spec:
+  properties:
+  forProvider:
+    name: sid-crossplane
+    scheduleExpression: rate(2 minutes)
+    description: testing-crossplane
+    region: us-east-1
+    state: ENABLED
+  providerRef:
+    name: scratch-provider

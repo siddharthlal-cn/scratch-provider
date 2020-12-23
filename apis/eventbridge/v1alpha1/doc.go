@@ -16,6 +16,6 @@ limitations under the License.
 
 // Package v1alpha1 contains managed resources of Event Bridge
 // +kubebuilder:object:generate=true
-// +groupName=eventbridge.aws.crossplane.io
+// +groupName=eventbridge.scratch-provider.crossplane.io
 // +versionName=v1alpha1
 package v1alpha1

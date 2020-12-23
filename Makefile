@@ -110,6 +110,11 @@ run: go.build
 	@# To see other arguments that can be provided, run the command with --help instead
 	$(GO_OUT_DIR)/provider --debug
 
+# This applies all the CRD definitions and starts controller in local environment
+run-local: generate
+	kubectl apply -f package/crds/ -R
+	go run cmd/provider/main.go -d
+
 .PHONY: cobertura reviewable manifests submodules fallthrough test-integration run crds.clean
 
 # ====================================================================================

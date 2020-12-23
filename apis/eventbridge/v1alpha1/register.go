@@ -25,7 +25,7 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "notification.aws.crossplane.io"
+	Group   = "eventbridge.scratch-provider.crossplane.io"
 	Version = "v1alpha1"
 )
 

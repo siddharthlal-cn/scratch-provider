@@ -101,7 +101,7 @@ type EventBridgeRuleParameters struct {
 
 // EventBridgeRuleObservation are the observable fields of a EventBridgeRule.
 type EventBridgeRuleObservation struct {
-	// ARN is the Amazon Resource Name (ARN) specifying the SNS Topic.
+	// ARN is the Amazon Resource Name (ARN) specifying the EventBridgeRule.
 	ARN string `json:"arn"`
 }
 

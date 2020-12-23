@@ -21,8 +21,8 @@ import (
 
 	"github.com/crossplane/crossplane-runtime/pkg/logging"
 
-	"github.com/crossplane/provider-template/pkg/controller/config"
-	"github.com/crossplane/provider-template/pkg/controller/mytype"
+	"github.com/siddharthlal-cn/scratch-provider/pkg/controller/config"
+	"github.com/siddharthlal-cn/scratch-provider/pkg/controller/eventbridge/eventbridgerule"
 )
 
 // Setup creates all Template controllers with the supplied logger and adds them to
@@ -30,7 +30,8 @@ import (
 func Setup(mgr ctrl.Manager, l logging.Logger) error {
 	for _, setup := range []func(ctrl.Manager, logging.Logger) error{
 		config.Setup,
-		mytype.Setup,
+		// mytype.Setup,
+		eventbridgerule.SetupEventBridgeRule,
 	} {
 		if err := setup(mgr, l); err != nil {
 			return err
