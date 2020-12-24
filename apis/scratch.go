@@ -29,7 +29,6 @@ func init() {
 	AddToSchemes = append(AddToSchemes,
 		templatev1alpha1.SchemeBuilder.AddToScheme,
 		eventbridge.SchemeBuilder.AddToScheme,
-		// samplev1alpha1.SchemeBuilder.AddToScheme,
 	)
 }
 

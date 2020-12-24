@@ -25,8 +25,8 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "template.crossplane.io"
-	Version = "v1alpha1"
+	Group   = "scratch-provider.crossplane.io"
+	Version = "v1aplha1"
 )
 
 var (

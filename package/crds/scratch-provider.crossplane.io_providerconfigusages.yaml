@@ -4,10 +4,14 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.4.0
   creationTimestamp: null
-  name: providerconfigusages.template.crossplane.io
+  name: providerconfigusages.scratch-provider.crossplane.io
 spec:
-  group: template.crossplane.io
+  group: scratch-provider.crossplane.io
   names:
+    categories:
+    - crossplane
+    - provider
+    - aws
     kind: ProviderConfigUsage
     listKind: ProviderConfigUsageList
     plural: providerconfigusages

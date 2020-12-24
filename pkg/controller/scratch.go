@@ -30,7 +30,6 @@ import (
 func Setup(mgr ctrl.Manager, l logging.Logger) error {
 	for _, setup := range []func(ctrl.Manager, logging.Logger) error{
 		config.Setup,
-		// mytype.Setup,
 		eventbridgerule.SetupEventBridgeRule,
 	} {
 		if err := setup(mgr, l); err != nil {
