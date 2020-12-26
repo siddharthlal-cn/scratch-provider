@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: default
+  name: example-provider-secret
+type: Opaque
+data:
+  aws_access_key_id:
+  aws_secret_access_key:
+  region:
+
+---
+apiVersion: scratch-provider.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: example
+spec:
+  credentials:
+    secretRef:
+      namespace: default
+      name: example-provider-secret
+      key: aws_access_key_id, aws_secret_access_key, region
+    source: Secret

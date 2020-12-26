@@ -15,7 +15,7 @@ import (
 	"github.com/crossplane/crossplane-runtime/pkg/reconciler/managed"
 	"github.com/crossplane/crossplane-runtime/pkg/resource"
 
-	awscommon "github.com/crossplane/provider-aws/pkg/clients"
+	awscommon "github.com/siddharthlal-cn/scratch-provider/pkg/clients"
 
 	"github.com/siddharthlal-cn/scratch-provider/apis/eventbridge/v1alpha1"
 	eventbridgeclient "github.com/siddharthlal-cn/scratch-provider/pkg/clients/eventbridge"
@@ -57,6 +57,7 @@ func (c *connector) Connect(ctx context.Context, mg resource.Managed) (managed.E
 	if err != nil {
 		return nil, err
 	}
+
 	return &external{client: ebv2.New(*cfg), kube: c.kube}, nil
 }
 

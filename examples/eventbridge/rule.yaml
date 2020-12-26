@@ -10,5 +10,5 @@ spec:
     description: testing-crossplane
     region: us-east-1
     state: ENABLED
-  providerRef:
-    name: scratch-provider
+  providerConfigRef:
+    name: example
