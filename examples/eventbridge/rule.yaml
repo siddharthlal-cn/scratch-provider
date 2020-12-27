@@ -11,4 +11,4 @@ spec:
     region: us-east-1
     state: ENABLED
   providerConfigRef:
-    name: example
+    name: example-config
