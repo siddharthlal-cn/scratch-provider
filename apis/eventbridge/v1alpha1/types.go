@@ -47,25 +47,6 @@ type Tag struct {
 
 // EventBridgeRuleParameters are the configurable fields of a EventBridgeRule.
 type EventBridgeRuleParameters struct {
-	// Region is the region you'd like your SNSTopic to be created in.
-	Region string `json:"region"`
-
-	// Name refers to the name of the AWS SNS Topic
-	// +immutable
-	Name string `json:"name"`
-
-	// The display name to use for a topic with SNS subscriptions.
-	// +optional
-	DisplayName *string `json:"displayName,omitempty"`
-
-	// Setting this enables server side encryption at-rest to your topic.
-	// The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK
-	//
-	// For more examples, see KeyId (https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters)
-	// in the AWS Key Management Service API Reference.
-	// +optional
-	KMSMasterKeyID *string `json:"kmsMasterKeyId,omitempty"`
-
 	// A description of the rule.
 	Description *string `json:"description"`
 
@@ -79,16 +60,24 @@ type EventBridgeRuleParameters struct {
 	// +optional
 	EventPattern *string `json:"eventPattern,omitempty"`
 
+	// Name refers to the name of the AWS SNS Topic
+	// +immutable
+	Name string `json:"name"`
+
+	// Region is the region you'd like your SNSTopic to be created in.
+	Region string `json:"region"`
+
 	// The Amazon Resource Name (ARN) of the IAM role associated with the rule.
 	// +optional
 	RoleArn *string `json:"roleArn,omitempty"`
 
 	// The scheduling expression. For example, "cron(0 20 * * ? *)" or "rate(5 minutes)".
-	ScheduleExpression *string `json:"scheduleExpression"`
+	// +optional
+	ScheduleExpression *string `json:"scheduleExpression,omitempty"`
 
 	// Indicates whether the rule is enabled or disabled.
 	// +optional
-	State *string `json:"state"`
+	State *string `json:"state,omitempty"`
 
 	// Tags represetnt a list of user-provided metadata that can be associated with a
 	// SNS Topic. For more information about tagging,
@@ -103,6 +92,10 @@ type EventBridgeRuleParameters struct {
 type EventBridgeRuleObservation struct {
 	// ARN is the Amazon Resource Name (ARN) specifying the EventBridgeRule.
 	ARN string `json:"arn"`
+
+	// If this is a managed rule, created by an AWS service on your behalf, this
+	// field displays the principal name of the AWS service that created the rule.
+	ManagedBy *string `json:"managedBy"`
 }
 
 // A EventBridgeRuleSpec defines the desired state of a EventBridgeRule.
